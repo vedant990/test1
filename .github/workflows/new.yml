@@ -25,7 +25,7 @@ jobs:
       - name: Build and Push Docker image to Development
         if: ${{ github.event_name == 'push' || github.event.workflow_call }}
         env:
-          DOCKER_REPO: ${{ inputs.docker_repo_dev || secrets.DOCKER_REPO_DEV }}
+          DOCKER_REPO: testeruser99/prod
         run: |
           docker build -t $DOCKER_REPO .
           docker push $DOCKER_REPO
@@ -33,7 +33,7 @@ jobs:
       - name: Build and Push Docker image to Production
         if: ${{ github.event_name == 'pull_request' && github.event.action == 'closed' || github.event.workflow_call }}
         env:
-          DOCKER_REPO: ${{ inputs.docker_repo_prod || secrets.DOCKER_REPO_PROD }}
+          DOCKER_REPO: testeruser99/dev
         run: |
           docker build -t $DOCKER_REPO .
           docker push $DOCKER_REPO
