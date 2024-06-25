@@ -46,3 +46,4 @@ jobs:
       - name: Logout of Docker Hub
         if: ${{ github.event_name == 'pull_request' && contains(steps.labels.outputs.labels, 'development') || github.event_name == 'push' && contains(github.event.labels.*.name, 'production') }}
         run: docker logout
+
